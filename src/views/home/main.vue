@@ -11,12 +11,24 @@
             >
           </slide-up>
         </div>
+        <div v-moveUp="0.5" class="img-animate">
+          <!-- video图片元素点击域 -->
+
+          <img class="bg1" src="@/assets/images/Ellipse74.png" alt="" />
+          <img class="bg2" src="@/assets/images/Ellipse11.png" alt="" />
+          <div class="img-wrap">
+            <img class="big-group" src="@/assets/images/Group208.png" alt="" />
+            <div id="code-animate" class="img-item"></div>
+            <img class="finger" src="@/assets/images/Group84.png" alt="" />
+            <img class="person" src="@/assets/images/id.png" alt="" />
+            <img class="direction" src="@/assets/images/Ethereum.png" alt="" />
+          </div>
+        </div>
         <div class="small-text" v-moveUp="0.5">
           Web3Go is an all-in-one open data analytics and service platform where
           everyone can grasp the value behind blockchain data.
         </div>
         <div class="btn-wrap" v-moveUp="0.8">
-          <img class="btn-bg" src="@/assets/images/btn-bg.png" alt="" />
           <el-button
             @click="jumpUrl('https://app.web3go.xyz/')"
             class="btn"
@@ -26,55 +38,12 @@
             <img class="arrow" src="@/assets/images/arrowRight.png" alt="" />
           </el-button>
         </div>
-      </div>
-      <div v-moveUp="0.5" class="img-animate">
-        <!-- video图片元素点击域 -->
-        <hover-animate-box :rotate="0">
-          <template #default="{ getItemStyle }">
-            <div class="img-wrap">
-              <img
-                ref="bigBg"
-                class="big-bg"
-                src="@/assets/images/line-circle.png"
-                alt=""
-              />
-              <img
-                :style="getItemStyle(15)"
-                class="big-group"
-                src="@/assets/images/big-group.png"
-                alt=""
-              />
-              <div
-                :style="getItemStyle(30)"
-                id="code-animate"
-                class="img-item"
-              ></div>
-              <div class="video" @click="openVideo" :style="getItemStyle(50)">
-                <img class="circle" src="@/assets/images/Frame_12.png" alt="" />
-                <img class="rect" src="@/assets/images/image_26.png" alt="" />
-                <img class="rect2" src="@/assets/images/rect2.png" alt="" />
-              </div>
-              <img
-                :style="getItemStyle(40)"
-                class="person"
-                src="@/assets/images/id.png"
-                alt=""
-              />
-              <img
-                :style="getItemStyle(50)"
-                class="direction"
-                src="@/assets/images/Ethereum.png"
-                alt=""
-              />
-            </div>
-          </template>
-        </hover-animate-box>
-      </div>
-      <div class="mouse-wrap">
-        <div
-          id="mouse-animate"
-          :style="{ opacity: showScrollTip ? 1 : 0 }"
-        ></div>
+        <div class="video-wrap">
+          <div class="video" @click="openVideo">
+            <img class="circle" src="@/assets/images/Frame_12.png" alt="" />
+            <img class="rect" src="@/assets/images/image26.png" alt="" />
+          </div>
+        </div>
       </div>
     </section>
     <section class="card-section layout">
@@ -513,28 +482,10 @@ export default {
       window.addEventListener("scroll", this.windowScrollFunction);
     },
     windowScrollFunction: throttle(function () {
-      // 鼠标滑动提示
-      if (document.documentElement.scrollTop > 200) {
-        this.showScrollTip = false;
-      } else {
-        this.showScrollTip = true;
-      }
       // 数字滚动
       this.$refs.numberGrow1.handleWindowScroll();
       this.$refs.numberGrow2.handleWindowScroll();
       this.$refs.numberGrow3.handleWindowScroll();
-      // 毛球背景掉落效果
-      const bgEl = this.$refs.bigBg;
-      const scrollTop = document.documentElement.scrollTop;
-      if (scrollTop < 1107) {
-        bgEl.style.transform = `translateY(${scrollTop}px) translateX(${
-          -scrollTop * 0.6214995483288166
-        }px) scale(${1 - 0.00022583559168925022 * scrollTop})`;
-        bgEl.style.opacity = 1 - 0.0009033423667570009 * scrollTop;
-      } else {
-        bgEl.style.opacity = 0;
-        bgEl.style.transform = `translateY(${1107}px) translateX(${-688}px) scale(${0.75})`;
-      }
     }, 50),
     jumpUrl(url) {
       if (!url) {
@@ -617,37 +568,29 @@ export default {
   position: relative;
   .section-main {
     .big-text {
+      text-align: center;
       font-weight: 600;
-      font-size: 68px;
+      font-size: 34px;
       color: #121619;
-      padding-top: 160px;
+      padding-top: 25px;
       .blue {
         color: #4318ff;
       }
-      .line2 {
-        margin-left: 142px;
-      }
     }
     .small-text {
-      margin-top: 30px;
+      margin-top: 20px;
       font-weight: 400;
-      font-size: 24px;
+      font-size: 20px;
       color: #343a3f;
-      width: 475px;
+      padding: 0 22px;
     }
     .btn-wrap {
-      margin-top: 40px;
+      margin-top: 38px;
       position: relative;
-      .btn-bg {
-        position: absolute;
-        pointer-events: none;
-        width: 545px;
-        top: -266px;
-        left: -220px;
-      }
+      padding: 0 32px;
       .btn {
+        width: 100%;
         height: 44px;
-        width: 141px;
         .arrow {
           width: 6px;
           margin-left: 10px;
@@ -656,38 +599,62 @@ export default {
     }
   }
   .img-animate {
-    top: 65px;
-    right: -10px;
-    width: 750px;
-    height: 659px;
-    position: absolute;
-
-    .img-wrap {
-      text-align: right;
+    margin-top: 15px;
+    text-align: center;
+    position: relative;
+    .bg1 {
+      right: 0;
+      top: -220px;
+      position: absolute;
+      width: 237px;
     }
-    .big-bg {
-      width: 668px;
-      transition: transform 0.2s;
+    .bg2 {
+      left: 0;
+      top: 58px;
+      position: absolute;
+      width: 277px;
+    }
+    .img-wrap {
+      display: inline-block;
+      position: relative;
     }
     .big-group {
-      right: -126px;
-      top: -57px;
-      position: absolute;
-      width: 826px;
+      width: 300px;
     }
     #code-animate {
-      right: 82px;
-      top: 333px;
+      right: 15px;
+      top: 158px;
       position: absolute;
-      width: 307px;
-      height: 187px;
+      width: 138px;
+      height: 84px;
     }
+    .finger {
+      right: 133px;
+      top: 180px;
+      position: absolute;
+      width: 125px;
+    }
+    .person {
+      right: 0px;
+      top: 136px;
+      position: absolute;
+      width: 35px;
+    }
+    .direction {
+      right: -18px;
+      top: 206px;
+      position: absolute;
+      width: 60px;
+    }
+  }
+  .video-wrap {
+    padding: 0 32px;
+    margin-top: 43px;
     .video {
+      display: inline-block;
       cursor: pointer;
       pointer-events: auto;
-      right: 359px;
-      top: 389px;
-      position: absolute;
+      position: relative;
       &:hover {
         .circle {
           transform: translate(-50%, -50%) scale(1.2);
@@ -709,24 +676,8 @@ export default {
         transition: all 0.3s;
       }
       .rect {
-        width: 346px;
+        width: 100%;
       }
-      .rect2 {
-        display: none;
-        width: 346px;
-      }
-    }
-    .person {
-      right: 41px;
-      top: 309px;
-      position: absolute;
-      width: 85px;
-    }
-    .direction {
-      right: 16px;
-      top: 459px;
-      position: absolute;
-      width: 156px;
     }
   }
   .mouse-wrap {
