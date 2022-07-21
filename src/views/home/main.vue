@@ -106,7 +106,6 @@
               <img class="img" src="@/assets/images/id.webp" alt="" />
               <img class="btrect" src="@/assets/images/btrect.png" alt="" />
             </div>
-            <!-- <div class="animate" id="id-animate"></div> -->
           </div>
         </div>
         <div
@@ -701,6 +700,8 @@ export default {
     padding-right: 32px;
 
     .card {
+      position: relative;
+      overflow: hidden;
       margin-top: 24px;
       height: 335px;
       box-sizing: border-box;
