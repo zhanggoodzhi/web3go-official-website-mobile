@@ -11,7 +11,7 @@ export default {
     value: {
       type: Number, // 具体数值
       default() {
-        return 720;
+        return 0;
       },
     },
   },
